@@ -28,6 +28,7 @@ def make_cool_playlist():
         return flask.redirect("authorize")
     else:
         creds = google.oauth2.credentials.Credentials(**flask.session["creds"])
+        print(flask.session["creds"])
         youtube = googleapiclient.discovery.build("youtube", "v3", credentials=creds)
         youtube.playlists().insert(
             part="snippet,status",
